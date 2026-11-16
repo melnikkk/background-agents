@@ -60,7 +60,7 @@ export async function cancelRun(runId: string) {
   return run;
 }
 
-export async function agentState(environmentId: string, runId: string) {
+export async function getAgentState(environmentId: string, runId: string) {
   const [world, run, recentEvents, recentActions, recentApprovals] = await Promise.all([
     getLatestState(),
     getRun(runId),
@@ -121,9 +121,9 @@ export async function agentState(environmentId: string, runId: string) {
   return state;
 }
 
-export type AgentState = Awaited<ReturnType<typeof agentState>>;
+export type AgentState = Awaited<ReturnType<typeof getAgentState>>;
 
-export function goalSatisfied(state: AgentState, condition: GoalCondition) {
+export function isGoalSatisfied(state: AgentState, condition: GoalCondition) {
   if (!condition) return false;
   const value = condition.path
     .split('.')

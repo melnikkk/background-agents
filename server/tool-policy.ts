@@ -1,7 +1,7 @@
 import type { ActionName } from '../shared/types';
 
 // The harness reads policy metadata; it does not branch on checkout fault flags.
-export const actionPolicy: Record<
+export const ACTION_TO_POLICY_MAP: Record<
   ActionName,
   'read' | 'write' | 'approval' | 'help' | 'terminal' | 'wait'
 > = {
